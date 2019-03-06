@@ -1,3 +1,5 @@
+package com.step.assignment;
+
 import java.util.Scanner;
 
 public class Calculator {

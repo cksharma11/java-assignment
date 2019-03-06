@@ -1,3 +1,5 @@
+package com.step.assignment;
+
 public class BarkingDog {
     public static boolean shouldWakeUp(boolean isDogBarking, int hourOfTheDay){
             if(isDogBarking){
