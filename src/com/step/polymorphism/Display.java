@@ -1,4 +1,4 @@
-package com.step.console;
+package com.step.polymorphism;
 
 public interface Display {
     public void display();
