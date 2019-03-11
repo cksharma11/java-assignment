@@ -2,8 +2,10 @@ package com.step.ListIterator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,11 +38,11 @@ class ListIteratorTest {
         assertEquals(integer,iterator.next());
     }
 
-//    @Test
-//    @DisplayName("should return the integer when there is next element")
-//    void next1() {
-//        ArrayList<Integer> list = new ArrayList<Integer>();
-//        ListIterator iterator = new ListIterator(list);
-//        assertThrows();
-//    }
+    @Test
+    @DisplayName("should throws an error if next called more then size of list")
+    void next1() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        ListIterator iterator = new ListIterator(list);
+        assertThrows(NoSuchElementException.class, () -> iterator.next());
+    }
 }
