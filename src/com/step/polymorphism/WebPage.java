@@ -2,7 +2,7 @@ package com.step.polymorphism;
 
 import java.util.Scanner;
 
-public class WebPage implements Display,Fetch{
+public class WebPage implements Displayable, Renderable {
     Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -13,7 +13,7 @@ public class WebPage implements Display,Fetch{
     }
 
     @Override
-    public String fetchContent() {
+    public String render() {
         String conetnt = "This is dummy content for WebPage.";
         return conetnt;
     }

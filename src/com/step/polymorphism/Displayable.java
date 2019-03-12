@@ -1,5 +1,5 @@
 package com.step.polymorphism;
 
-public interface Display {
+public interface Displayable {
     public void display();
 }

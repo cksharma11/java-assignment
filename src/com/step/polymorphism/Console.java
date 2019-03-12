@@ -2,7 +2,7 @@ package com.step.polymorphism;
 
 import java.util.Scanner;
 
-public class Console implements Display{
+public class Console implements Displayable {
     Scanner scanner = new Scanner(System.in);
 
     @Override

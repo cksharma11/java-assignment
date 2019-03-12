@@ -3,21 +3,21 @@ package com.step.polymorphism;
 public class Main {
 
     public static void main(String[] args) {
-        Display console = new Console();
-        Display webPage = new WebPage();
-        Display nonInteractiveWebPage = new NonInteractiveWebPage();
+        Displayable console = new Console();
+        Displayable webPage = new WebPage();
+        Displayable nonInteractiveWebPage = new NonInteractiveWebPage();
 
-        Fetch webPage1 = new WebPage();
-        Fetch nonInteractiveWebPage1 = new NonInteractiveWebPage();
-        Fetch pdfPage = new PDFPage();
+        Renderable webPage1 = new WebPage();
+        Renderable nonInteractiveWebPage1 = new NonInteractiveWebPage();
+        Renderable pdfPage = new PDFPage();
 
         console.display();
         webPage.display();
         nonInteractiveWebPage.display();
 
-        System.out.println(webPage1.fetchContent());
-        System.out.println(nonInteractiveWebPage1.fetchContent());
-        System.out.println(pdfPage.fetchContent());
+        System.out.println(webPage1.render());
+        System.out.println(nonInteractiveWebPage1.render());
+        System.out.println(pdfPage.render());
 
         ((WebPage) webPage).click();
         ((NonInteractiveWebPage) nonInteractiveWebPage).click();

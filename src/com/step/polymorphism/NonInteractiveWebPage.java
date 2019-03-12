@@ -2,7 +2,7 @@ package com.step.polymorphism;
 
 import java.util.Scanner;
 
-public class NonInteractiveWebPage implements Display,Fetch{
+public class NonInteractiveWebPage implements Displayable, Renderable {
     Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -13,7 +13,7 @@ public class NonInteractiveWebPage implements Display,Fetch{
     }
 
     @Override
-    public String fetchContent() {
+    public String render() {
         String conetnt = "This is dummy content for Non Interactive web page.";
         return conetnt;
     }
