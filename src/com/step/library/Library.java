@@ -3,14 +3,14 @@ package com.step.library;
 import java.util.*;
 
 public class Library {
-    private List<String> books;
+    private Map<String,Book> books;
     private List<String> removedBooks;
     private Set<Reader> readers;
     private Map<String, String> records;
     private Map<String, Set<String>> booksOwnedByReaders;
 
     public Library() {
-        this.books = new ArrayList<>();
+        this.books = new HashMap<>();
         this.removedBooks = new ArrayList<>();
         this.readers = new HashSet<>();
         this.records = new HashMap<>();
@@ -24,36 +24,41 @@ public class Library {
         return this.readers.add(reader);
     }
 
-    public boolean addBook(String bookName) {
-        if(this.books.contains(bookName)) return false;
-        return this.books.add(bookName);
+    public boolean addBook(Book book) {
+        if(this.books.containsKey(book.getName())) return false;
+        this.books.put(book.getName(),book);
+        return true;
     }
 
-    public boolean removeBook(String bookName) {
-        if(!this.books.contains(bookName)) return false;
-        this.removedBooks.add(bookName);
-        return this.books.remove(bookName);
+    public boolean removeBook(Book book) {
+        if(!this.books.containsKey(book.getName())) return false;
+        this.removedBooks.add(book.getName());
+        this.books.remove(book.getName());
+        return true;
     }
 
     public boolean isRemoved(String bookName) {
         return this.removedBooks.contains(bookName);
     }
 
-    public boolean lendBook(String book, Reader reader) {
-        if(!this.books.contains(book) && !reader.hasAlreadyBorrowed(book)) return false;
-        this.booksOwnedByReaders.get(reader.getName()).add(book);
-        records.put(book, reader.getName());
-        return books.remove(book);
+    public boolean lendBook(Book book, Reader reader) {
+        if(!this.books.containsKey(book.getName()) && !reader.hasAlreadyBorrowed(book.getName())) return false;
+        this.booksOwnedByReaders.get(reader.getName()).add(book.getName());
+        records.put(book.getName(), reader.getName());
+        reader.borrowBook(book);
+        books.remove(book.getName());
+        return true;
     }
 
-    public boolean takeBook(Reader reader,String bookName){
-        reader.returnBook(bookName);
-        this.booksOwnedByReaders.get(reader.getName()).remove(bookName);
-        return this.books.add(bookName);
+    public boolean takeBook(Reader reader,Book book){
+        reader.returnBook(book.getName());
+        this.booksOwnedByReaders.get(reader.getName()).remove(book.getName());
+        this.books.put(book.getName(), book);
+        return true;
     }
 
     public boolean doesBookExists(String bookName) {
-        return this.books.contains(bookName);
+        return this.books.containsKey(bookName);
     }
 
     public String whoHasBorrowed(String bookName) {

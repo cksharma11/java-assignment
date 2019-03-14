@@ -24,23 +24,28 @@ class LibraryTest {
 
     @Test
     void addBook() {
-        assertTrue(library.addBook("A"));
+        Book a = new Book("A");
+        assertTrue(library.addBook(a));
     }
 
     @Test
     void removeBook() {
-        library.addBook("A");
-        library.addBook("B");
-        assertTrue(library.removeBook("A"));
-        assertFalse(library.removeBook("C"));
+        Book a = new Book("A");
+        Book b = new Book("B");
+        Book c = new Book("C");
+        library.addBook(a);
+        library.addBook(b);
+        assertTrue(library.removeBook(a));
+        assertFalse(library.removeBook(c));
     }
 
     @Test
     void isRemoved() {
-        library.addBook("A");
-        library.addBook("B");
-
-        library.removeBook("A");
+        Book b = new Book("B");
+        Book a = new Book("A");
+        library.addBook(a);
+        library.addBook(b);
+        library.removeBook(a);
 
         assertFalse(library.isRemoved("B"));
         assertTrue(library.isRemoved("A"));
@@ -50,26 +55,31 @@ class LibraryTest {
     void lendBook() {
         Reader reader = new Reader("Chadnan");
         library.addReader(reader);
-        library.addBook("A");
-        assertTrue(library.lendBook("A", reader));
+        Book a = new Book("A");
+        Book b = new Book("B");
+        library.addBook(a);
+        assertFalse(library.lendBook(b, reader));
+        assertTrue(library.lendBook(a, reader));
     }
 
     @Test
     void takeBook() {
         Reader reader = new Reader("Chadnan");
         library.addReader(reader);
-
-        library.addBook("A");
-        library.addBook("B");
-
-        library.lendBook("A", reader);
-        assertTrue(library.takeBook(reader, "A"));
+        Book a = new Book("A");
+        Book b = new Book("B");
+        library.addBook(a);
+        library.addBook(b);
+        library.lendBook(a, reader);
+        assertTrue(library.takeBook(reader, a));
     }
 
     @Test
     void doesBookExists() {
-        library.addBook("A");
-        library.addBook("B");
+        Book a = new Book("A");
+        Book b = new Book("B");
+        library.addBook(a);
+        library.addBook(b);
 
         assertTrue(library.doesBookExists("A"));
         assertFalse(library.doesBookExists("C"));
@@ -79,11 +89,12 @@ class LibraryTest {
     void whoHasBorrowed() {
         Reader reader = new Reader("Chandan");
         library.addReader(reader);
+        Book a = new Book("A");
+        Book b = new Book("B");
+        library.addBook(a);
+        library.addBook(b);
 
-        library.addBook("A");
-        library.addBook("B");
-
-        library.lendBook("A", reader);
+        library.lendBook(a, reader);
         assertEquals("Chandan", library.whoHasBorrowed("A"));
     }
 
@@ -91,12 +102,13 @@ class LibraryTest {
     void getBooksOfReader() {
         Reader reader = new Reader("Chandan");
         library.addReader(reader);
+        Book a = new Book("A");
+        Book b = new Book("B");
+        library.addBook(a);
+        library.addBook(b);
 
-        library.addBook("A");
-        library.addBook("B");
-
-        library.lendBook("A", reader);
-        library.lendBook("B", reader);
+        library.lendBook(a, reader);
+        library.lendBook(b, reader);
         Set<String> userBooks = new HashSet<>();
         userBooks.add("A");
         userBooks.add("B");
