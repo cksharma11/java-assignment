@@ -32,7 +32,7 @@ public class Library {
         return this.removedBooks.contains(bookName);
     }
 
-    public boolean giveBook(String book, Reader reader) {
+    public boolean lendBook(String book, Reader reader) {
         reader.borrowBook(book);
         records.put(book, reader.getName());
         return books.remove(book);

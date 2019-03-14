@@ -47,7 +47,7 @@ class LibraryTest {
     void giveBook() {
         Reader reader = new Reader("Chadnan");
         library.addBook("A");
-        assertTrue(library.giveBook("A", reader));
+        assertTrue(library.lendBook("A", reader));
     }
 
     @Test
@@ -56,7 +56,7 @@ class LibraryTest {
         library.addBook("A");
         library.addBook("B");
 
-        library.giveBook("A",reader);
+        library.lendBook("A",reader);
         assertTrue(library.takeBook(reader, "A"));
     }
 

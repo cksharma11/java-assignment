@@ -18,8 +18,8 @@ public class Librarian {
         System.out.println(library.isRemoved("Cars of future"));
 
         library.addReader(reader);
-        library.giveBook("Alien in world", reader);
-        library.giveBook("Boxers", reader);
+        library.lendBook("Alien in world", reader);
+        library.lendBook("Boxers", reader);
 
 
         System.out.println(reader.hasAlreadyBorrowed("Alien in world"));
