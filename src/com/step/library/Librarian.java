@@ -14,7 +14,7 @@ public class Librarian {
 
         library.removeBook("Cars of future");
 
-        System.out.println("isRemoved(Alien) : " + library.isRemoved("Alien in world"));
+        System.out.println(library.isRemoved("Alien in world"));
         System.out.println(library.isRemoved("Cars of future"));
 
         library.addReader(reader);
@@ -28,9 +28,10 @@ public class Librarian {
 
         library.takeBook(reader, "Boxers");
 
-
         System.out.println(library.doesBookExists("New Book"));
         System.out.println(library.doesBookExists("Alien in world"));
         System.out.println(library.doesBookExists("Gully boy"));
+
+        System.out.println(library.getBooksOfReader(reader));
     }
 }

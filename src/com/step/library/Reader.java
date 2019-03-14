@@ -12,23 +12,19 @@ public class Reader {
         this.books = new HashSet<>();
     }
 
-    public void borrowBook(String book){
-        this.books.add(book);
+    public boolean borrowBook(String book){
+        return this.books.add(book);
     }
 
     public boolean hasAlreadyBorrowed(String book){
         return this.books.contains(book);
     }
 
-    public void returnBook(String book){
-        this.books.remove(book);
+    public boolean returnBook(String book){
+        return this.books.remove(book);
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public Set<String> getBooks() {
-        return books;
     }
 }
