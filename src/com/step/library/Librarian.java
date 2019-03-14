@@ -21,7 +21,6 @@ public class Librarian {
         library.lendBook("Alien in world", reader);
         library.lendBook("Boxers", reader);
 
-
         System.out.println(reader.hasAlreadyBorrowed("Alien in world"));
         System.out.println(reader.hasAlreadyBorrowed("Cars of future"));
         System.out.println(library.whoHasBorrowed("Alien in world"));

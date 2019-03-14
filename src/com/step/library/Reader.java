@@ -13,6 +13,7 @@ public class Reader {
     }
 
     public boolean borrowBook(String book){
+        if(!this.books.contains(book)) return false;
         return this.books.add(book);
     }
 
@@ -21,6 +22,7 @@ public class Reader {
     }
 
     public boolean returnBook(String book){
+        if(!this.books.contains(book)) return false;
         return this.books.remove(book);
     }
 

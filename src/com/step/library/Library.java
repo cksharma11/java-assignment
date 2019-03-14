@@ -18,16 +18,19 @@ public class Library {
     }
 
     public boolean addReader(Reader reader) {
+        if(this.readers.contains(reader)) return false;
         Set<String> books = new HashSet<>();
         this.booksOwnedByReaders.put(reader.getName(),books);
         return this.readers.add(reader);
     }
 
     public boolean addBook(String bookName) {
+        if(this.books.contains(bookName)) return false;
         return this.books.add(bookName);
     }
 
     public boolean removeBook(String bookName) {
+        if(!this.books.contains(bookName)) return false;
         this.removedBooks.add(bookName);
         return this.books.remove(bookName);
     }
@@ -37,7 +40,7 @@ public class Library {
     }
 
     public boolean lendBook(String book, Reader reader) {
-        reader.borrowBook(book);
+        if(!this.books.contains(book) && !reader.hasAlreadyBorrowed(book)) return false;
         this.booksOwnedByReaders.get(reader.getName()).add(book);
         records.put(book, reader.getName());
         return books.remove(book);

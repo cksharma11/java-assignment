@@ -3,6 +3,9 @@ package com.step.library;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
@@ -44,8 +47,9 @@ class LibraryTest {
     }
 
     @Test
-    void giveBook() {
+    void lendBook() {
         Reader reader = new Reader("Chadnan");
+        library.addReader(reader);
         library.addBook("A");
         assertTrue(library.lendBook("A", reader));
     }
@@ -53,10 +57,12 @@ class LibraryTest {
     @Test
     void takeBook() {
         Reader reader = new Reader("Chadnan");
+        library.addReader(reader);
+
         library.addBook("A");
         library.addBook("B");
 
-        library.lendBook("A",reader);
+        library.lendBook("A", reader);
         assertTrue(library.takeBook(reader, "A"));
     }
 
@@ -71,5 +77,29 @@ class LibraryTest {
 
     @Test
     void whoHasBorrowed() {
+        Reader reader = new Reader("Chandan");
+        library.addReader(reader);
+
+        library.addBook("A");
+        library.addBook("B");
+
+        library.lendBook("A", reader);
+        assertEquals("Chandan", library.whoHasBorrowed("A"));
+    }
+
+    @Test
+    void getBooksOfReader() {
+        Reader reader = new Reader("Chandan");
+        library.addReader(reader);
+
+        library.addBook("A");
+        library.addBook("B");
+
+        library.lendBook("A", reader);
+        library.lendBook("B", reader);
+        Set<String> userBooks = new HashSet<>();
+        userBooks.add("A");
+        userBooks.add("B");
+        assertEquals(userBooks, library.getBooksOfReader(reader));
     }
 }
