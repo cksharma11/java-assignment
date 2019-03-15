@@ -1,45 +1,58 @@
 package com.step.library;
 
+import java.util.Scanner;
+
 public class Librarian {
     public static void main(String[] args) {
-        Reader reader = new Reader("Chandan");
         Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        int selectedOption = askOption();
+        while (selectedOption != 4){
+            switch (selectedOption){
+                case 1:
+                    System.out.println("Enter Reader Name  :");
+                    String readerName = scanner.nextLine();
+                    if(library.addReader(new Reader(readerName))){
+                        System.out.println("Reader Added.");
+                        break;
+                    }
+                    System.out.println("Something went wrong. ");
+                    break;
 
-        Book cars_of_future = new Book("Cars of future");
-        Book alien_in_world = new Book("Alien in world");
-        Book boxers = new Book("Boxers");
-        Book don_number_one = new Book("Don number one");
-        Book elephant_my_friend = new Book("Elephant my friend");
-        Book fog_in_delhi = new Book("Fog in delhi");
-        Book gully_boy = new Book("Gully boy");
+                case 2:
+                    System.out.println("Enter Reader Name  :");
+                    String bookName = scanner.nextLine();
+                    if(library.addBook(new Book(bookName))){
+                        System.out.println("Book Added.");
+                        break;
+                    }
+                    System.out.println("Something went wrong. ");
+                    break;
+                case 3:
+                    System.out.println("Enter Reader Name  :");
+                    String bookToRemove = scanner.nextLine();
+                    if(library.removeBook(new Book(bookToRemove))){
+                        System.out.println("Book Removed.");
+                        break;
+                    }
+                    System.out.println("Something went wrong. ");
+                    break;
+                default:
+                    System.out.println("Please choose a valid option.");
+                    break;
+            }
+            selectedOption = askOption();
+        }
+    }
 
-        library.addBook(cars_of_future);
-        library.addBook(alien_in_world);
-        library.addBook(boxers);
-        library.addBook(don_number_one);
-        library.addBook(elephant_my_friend);
-        library.addBook(fog_in_delhi);
-        library.addBook(gully_boy);
-
-        library.removeBook(cars_of_future);
-
-        System.out.println(library.isRemoved("Alien in world"));
-        System.out.println(library.isRemoved("Cars of future"));
-
-        library.addReader(reader);
-        library.lendBook(alien_in_world, reader);
-        library.lendBook(boxers, reader);
-
-        System.out.println(reader.hasAlreadyBorrowed("Alien in world"));
-        System.out.println(reader.hasAlreadyBorrowed("Cars of future"));
-        System.out.println(library.whoHasBorrowed("Alien in world"));
-
-        library.takeBook(reader, boxers);
-
-        System.out.println(library.doesBookExists("New Book"));
-        System.out.println(library.doesBookExists("Alien in world"));
-        System.out.println(library.doesBookExists("Gully boy"));
-
-        System.out.println(library.getBooksOfReader(reader));
+    public static int askOption(){
+        System.out.println("1 . Add Reader ");
+        System.out.println("2 . Add Book ");
+        System.out.println("3 . Remove Book");
+        System.out.println("4 . Exit");
+        System.out.println("Enter your choice : ");
+        Scanner scanner = new Scanner(System.in);
+        int selectedOption = scanner.nextInt();
+        return selectedOption;
     }
 }
